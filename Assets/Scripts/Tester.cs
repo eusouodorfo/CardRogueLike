@@ -5,17 +5,23 @@ using UnityEngine;
 public class Tester : MonoBehaviour
 {
     public Card Card;
-    public CardHolder CardHolder;
+    public CardsController CardsController;
 
-    [ContextMenu("Add")]
-    public void AddCard()
+    [ContextMenu("Draw")]
+    public void DrawCard()
     {
-        CardHolder.AddCard(Card);
+        CardsController.DrawCard();
     }
 
-    [ContextMenu("Remove")]
+    [ContextMenu("Discard")]
     public void RemoveCard()
     {
-        CardHolder.RemoveCard(Card);
+        CardsController.Discard(Card);
+    }
+
+     [ContextMenu("ShuffleDiscard")]
+    public void ShuffleDiscard()
+    {
+        CardsController.ShuffleDiscardIntoDeck();
     }
 }

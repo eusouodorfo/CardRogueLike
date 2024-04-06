@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +10,13 @@ public class CardHolder : MonoBehaviour
     public List<Card> Cards;
     public TextMeshProUGUI CardAmount;
     public RectTransform Holder;
-    public int InRotation;
+    public int CardRotation;
 
     void Awake()
     {
         Cards = new List<Card>(GetComponentsInChildren<Card>());
         CardAmount.text = ""+Cards.Count;
+        SetInitialRotation();
     }
 
     public void AddCard(Card card)
@@ -25,11 +25,11 @@ public class CardHolder : MonoBehaviour
         rect.anchorMax = Holder.anchorMax;
         rect.anchorMin = Holder.anchorMin;
         rect.pivot = Holder.pivot;
+        CardHolder oldHolder = rect.GetComponentInParent<CardHolder>();
         rect.SetParent(this.transform);
-        UnityEngine.Vector3 targetPosition = Holder.anchoredPosition3D;
+        Vector3 targetPosition = Holder.anchoredPosition3D;
 
-        rect.LeanRotateAroundLocal(UnityEngine.Vector3.up, -InRotation, 0.2f);
-
+        rect.LeanRotateAroundLocal(Vector3.up, oldHolder.CardRotation-CardRotation, 0.2f);
         rect.LeanMove(targetPosition, 0.5f).setOnComplete(()=>
         {
             Cards.Add(card);
@@ -42,5 +42,14 @@ public class CardHolder : MonoBehaviour
     {
         Cards.Remove(card);
         CardAmount.text = ""+Cards.Count;
+    }
+
+    void SetInitialRotation()
+    {
+        foreach(Card card in Cards)
+        {
+            RectTransform rect = card.transform as RectTransform;
+            rect.localRotation = Quaternion.Euler(0, CardRotation, 0);
+        }
     }
 }
