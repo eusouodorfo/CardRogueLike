@@ -7,11 +7,12 @@ public class CardsController : MonoBehaviour
 {
     #region Fields/Properties
 
-    public static CardsController Instance;    
+    public static CardsController Instance;
 
     public CardHolder Hand;
     public CardHolder Deck;
     public CardHolder DiscardPile;
+
     #endregion
 
     void Awake()
@@ -20,17 +21,24 @@ public class CardsController : MonoBehaviour
     }
 
     #region Card Control
-    public void DrawCard()
+
+    public IEnumerator DrawCard(int amount = 1)
     {
-        if(Deck.Cards.Count == 0)
+        while (amount > 0)
         {
-            Debug.Log("No Cards Left");
-            return;
-        }
-        Card card = Deck.Cards[Deck.Cards.Count-1];
-        Deck.RemoveCard(card);
-        Hand.AddCard(card);
-    }
+            if (Deck.Cards.Count == 0)
+            {
+                Debug.Log("No Cards Left");
+                yield break;
+            }
+            Card card = Deck.Cards[Deck.Cards.Count - 1];
+            Deck.RemoveCard(card);
+            Hand.AddCard(card);
+            amount--;
+            yield return new WaitForSeconds(0.25f);
+        } 
+
+    } 
 
     public void Discard(Card card)
     {
@@ -39,17 +47,18 @@ public class CardsController : MonoBehaviour
         DiscardPile.AddCard(card);
     }
 
-    public void ShuffleDiscardIntoDeck()
+    public IEnumerator ShuffleDiscardIntoDeck()
     {
-       List<Card> cards = DiscardPile.Cards;
-       System.Random rand = new System.Random();
-       List<Card> shuffled = new List<Card>(cards.OrderBy (x => rand.Next()).ToList());
+        List<Card> cards = DiscardPile.Cards;
+        System.Random rand = new System.Random();
+        List<Card> shuffled = new List<Card>(cards.OrderBy(x => rand.Next()).ToList());
 
-       foreach(Card card in shuffled)
-       {
-        DiscardPile.RemoveCard(card);
-        Deck.AddCard(card); 
-       }
+        foreach (Card card in shuffled)
+        {
+            DiscardPile.RemoveCard(card);
+            Deck.AddCard(card);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
     #endregion
 
@@ -57,7 +66,7 @@ public class CardsController : MonoBehaviour
     public void Play(Card card)
     {
         Transform scriptsHolder = card.transform.Find("Effects/Played");
-        foreach(ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
+        foreach (ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
         {
             effect.Apply();
         }
@@ -66,7 +75,7 @@ public class CardsController : MonoBehaviour
     public void AfterPlay(Card card)
     {
         Transform scriptsHolder = card.transform.Find("Effects/AfterPlayed");
-        foreach(ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
+        foreach (ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
         {
             effect.Apply();
         }

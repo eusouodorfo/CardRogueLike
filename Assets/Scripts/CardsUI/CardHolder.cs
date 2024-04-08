@@ -29,13 +29,13 @@ public class CardHolder : MonoBehaviour
         rect.SetParent(this.transform);
         Vector3 targetPosition = Holder.anchoredPosition3D;
 
-        rect.LeanRotateAroundLocal(Vector3.up, oldHolder.CardRotation-CardRotation, 0.2f);
-        rect.LeanMove(targetPosition, 0.5f).setOnComplete(()=>
+        card.Rotate(oldHolder.CardRotation-CardRotation, 0.4f);
+        card.Move(targetPosition, 0.5f, ()=>
         {
             Cards.Add(card);
             card.transform.SetParent(Holder);
             CardAmount.text = ""+Cards.Count;
-        });
+        });  
     }
 
     public void RemoveCard(Card card)

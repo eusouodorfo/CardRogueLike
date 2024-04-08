@@ -9,7 +9,7 @@ public class Tester : MonoBehaviour
     [ContextMenu("Draw")]
     public void DrawCard()
     {
-        CardsController.Instance.DrawCard();
+        StartCoroutine(CardsController.Instance.DrawCard());
     }
 
     [ContextMenu("Discard")]
@@ -21,7 +21,7 @@ public class Tester : MonoBehaviour
     [ContextMenu("ShuffleDiscard")]
     public void ShuffleDiscard()
     {
-        CardsController.Instance.ShuffleDiscardIntoDeck();
+        StartCoroutine(CardsController.Instance.ShuffleDiscardIntoDeck());
     }
 
     [ContextMenu("Play Card")]
