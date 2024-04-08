@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CardHolder : MonoBehaviour
 {
     
+    public const float CardMoveDuration = 0.5f;
+    public const float CardRotateDuration = 0.4f;
     public List<Card> Cards;
     public TextMeshProUGUI CardAmount;
     public RectTransform Holder;
@@ -29,8 +31,8 @@ public class CardHolder : MonoBehaviour
         rect.SetParent(this.transform);
         Vector3 targetPosition = Holder.anchoredPosition3D;
 
-        card.Rotate(oldHolder.CardRotation-CardRotation, 0.4f);
-        card.Move(targetPosition, 0.5f, ()=>
+        card.Rotate(oldHolder.CardRotation-CardRotation, CardRotateDuration);
+        card.Move(targetPosition, CardMoveDuration, ()=>
         {
             Cards.Add(card);
             card.transform.SetParent(Holder);

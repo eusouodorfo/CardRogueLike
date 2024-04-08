@@ -42,7 +42,8 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Debug.Log(Mouse.current.position.ReadValue().y);
         if(Mouse.current.position.ReadValue().y > 200)
         {
-            Debug.Log("Tentou usar a carta");
+            CardsController.Instance.Play(_card);
+            CardsController.Instance.AfterPlay(_card);
         } else {
             _card.Move(_savedPosition, 0.2f, ()=>{});
         }

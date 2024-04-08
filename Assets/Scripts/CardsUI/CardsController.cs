@@ -28,17 +28,22 @@ public class CardsController : MonoBehaviour
         {
             if (Deck.Cards.Count == 0)
             {
-                Debug.Log("No Cards Left");
-                yield break;
+                yield return StartCoroutine(ShuffleDiscardIntoDeck());
+                yield return new WaitForSeconds(CardHolder.CardMoveDuration);
+                if (Deck.Cards.Count == 0)
+                {
+                    Debug.Log("No Cards Left");
+                    yield break;
+                }
             }
             Card card = Deck.Cards[Deck.Cards.Count - 1];
             Deck.RemoveCard(card);
             Hand.AddCard(card);
             amount--;
             yield return new WaitForSeconds(0.25f);
-        } 
+        }
 
-    } 
+    }
 
     public void Discard(Card card)
     {
