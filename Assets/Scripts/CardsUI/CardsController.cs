@@ -5,10 +5,21 @@ using System.Linq;
 
 public class CardsController : MonoBehaviour
 {
+    #region Fields/Properties
+
+    public static CardsController Instance;    
+
     public CardHolder Hand;
     public CardHolder Deck;
     public CardHolder DiscardPile;
+    #endregion
 
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    #region Card Control
     public void DrawCard()
     {
         if(Deck.Cards.Count == 0)
@@ -28,7 +39,7 @@ public class CardsController : MonoBehaviour
         DiscardPile.AddCard(card);
     }
 
-     public void ShuffleDiscardIntoDeck()
+    public void ShuffleDiscardIntoDeck()
     {
        List<Card> cards = DiscardPile.Cards;
        System.Random rand = new System.Random();
@@ -40,4 +51,25 @@ public class CardsController : MonoBehaviour
         Deck.AddCard(card); 
        }
     }
+    #endregion
+
+    #region Cards Events
+    public void Play(Card card)
+    {
+        Transform scriptsHolder = card.transform.Find("Effects/Played");
+        foreach(ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
+        {
+            effect.Apply();
+        }
+    }
+
+    public void AfterPlay(Card card)
+    {
+        Transform scriptsHolder = card.transform.Find("Effects/AfterPlayed");
+        foreach(ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
+        {
+            effect.Apply();
+        }
+    }
+    #endregion
 }
