@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICardEffect
+public interface ITarget 
 {
-   void Apply();
+    List<object> GetTargets();
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor.SearchService;
 
 public class CardsController : MonoBehaviour
 {
@@ -71,19 +72,22 @@ public class CardsController : MonoBehaviour
     public void Play(Card card)
     {
         Transform scriptsHolder = card.transform.Find("Effects/Played");
+        //
+        List<object> targets = new List<object>();
+        targets.Add(CombatTester.instance.Defender);
+        //
         foreach (ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
         {
-            effect.Apply();
+            effect.Apply(targets);
         }
     }
 
     public void AfterPlay(Card card)
     {
         Transform scriptsHolder = card.transform.Find("Effects/AfterPlayed");
-        foreach (ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
-        {
-            effect.Apply();
-        }
+        ICardEffect effect = scriptsHolder.GetComponentInChildren<ICardEffect>();
+        ITarget target = scriptsHolder.GetComponentInChildren<ITarget>();
+        effect.Apply(target.GetTargets());
     }
     #endregion
 }
