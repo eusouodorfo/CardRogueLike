@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class State : MonoBehaviour
 {
+    protected StateMachine machine{get{return StateMachine.Instance;}}
+    
     public virtual IEnumerator Enter()
     {
         yield return null;

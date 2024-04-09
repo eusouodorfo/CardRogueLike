@@ -13,6 +13,7 @@ public class CardsController : MonoBehaviour
     public CardHolder Hand;
     public CardHolder Deck;
     public CardHolder DiscardPile;
+    public CardsList PlayerDeck;
 
     #endregion
 

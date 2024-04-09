@@ -16,9 +16,8 @@ public class CardHolder : MonoBehaviour
 
     void Awake()
     {
-        Cards = new List<Card>(GetComponentsInChildren<Card>());
+        Cards = new List<Card>();
         CardAmount.text = ""+Cards.Count;
-        SetInitialRotation();
     }
 
     public void AddCard(Card card)
@@ -46,7 +45,7 @@ public class CardHolder : MonoBehaviour
         CardAmount.text = ""+Cards.Count;
     }
 
-    void SetInitialRotation()
+    public void SetInitialRotation()
     {
         foreach(Card card in Cards)
         {
