@@ -7,6 +7,7 @@ public class StateMachine : MonoBehaviour
     public static StateMachine Instance;
     public State Current{get{return _current;}}
     public Queue<Unit> Units;
+    public Unit CurrentUnit;
     State _current;
     bool _busy;
 

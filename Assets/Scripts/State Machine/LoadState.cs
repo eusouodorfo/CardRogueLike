@@ -10,8 +10,9 @@ public class LoadState : State
         yield return StartCoroutine(InitializeDeck());
         yield return StartCoroutine(InitializeUnits());
         //
-        StartCoroutine(CardsController.Instance.DrawCard(5));
+        yield return StartCoroutine(CardsController.Instance.DrawCard(5));
         //
+        StartCoroutine(WaitThenChangeState<TurnBeginState>());
     }
 
     IEnumerator InitializeDeck()
