@@ -39,8 +39,10 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         _dragging = false;
         EventSystem.current.SetSelectedGameObject(null);
-        Debug.Log(Mouse.current.position.ReadValue().y);
-        if(Mouse.current.position.ReadValue().y > 200)
+        //Debug.Log(Mouse.current.position.ReadValue().y);
+        if(Mouse.current.position.ReadValue().y > 200 
+        && StateMachine.Instance.Current.GetType() == typeof(PlayCardsState)
+        && StateMachine.Instance.CurrentUnit.GetType() == typeof(PlayerUnit))
         {
             CardsController.Instance.Play(_card);
             CardsController.Instance.AfterPlay(_card);

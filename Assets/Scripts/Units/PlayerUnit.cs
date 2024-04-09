@@ -7,4 +7,9 @@ public class PlayerUnit : Unit
     public int MaxEnergy;
     public int CurrentEnergy;
     public int DrawAmount;
+    public override IEnumerator Recover()
+    {
+        CurrentEnergy = MaxEnergy;
+        yield return StartCoroutine(CardsController.Instance.DrawCard(DrawAmount));
+    }
 }

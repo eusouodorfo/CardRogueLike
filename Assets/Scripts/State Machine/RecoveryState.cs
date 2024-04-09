@@ -6,6 +6,7 @@ public class RecoveryState : State
 {
     public override IEnumerator Enter()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return StartCoroutine(machine.CurrentUnit.Recover());
+        StartCoroutine(WaitThenChangeState<PlayCardsState>());
     }
 }
