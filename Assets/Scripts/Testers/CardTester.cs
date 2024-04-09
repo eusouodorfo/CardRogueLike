@@ -25,15 +25,4 @@ public class CardTester : MonoBehaviour
         StartCoroutine(CardsController.Instance.ShuffleDiscardIntoDeck());
     }
 
-    [ContextMenu("Play Card")]
-    public void Play()
-    {
-        CardsController.Instance.Play(Card);
-    }
-
-    [ContextMenu("After Play Card")]
-    public void AfterPlay()
-    {
-        CardsController.Instance.AfterPlay(Card);
-    }
 }

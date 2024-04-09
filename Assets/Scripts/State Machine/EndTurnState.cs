@@ -7,5 +7,6 @@ public class EndTurnState : State
     public override IEnumerator Enter()
     {
         yield return null;
+        StartCoroutine(WaitThenChangeState<TurnBeginState>());
     }
 }

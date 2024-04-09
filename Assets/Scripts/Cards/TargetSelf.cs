@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TargetSelf : MonoBehaviour, ITarget
 {
-    public List<object> GetTargets()
+    public IEnumerator GetTargets(List<object> targets)
     {
-        List<object> targets = new List<object>();
         Card card = GetComponentInParent<Card>();
         targets.Add(card);
-        return targets;
+        yield return null;
     }
 }

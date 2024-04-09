@@ -44,8 +44,7 @@ public class CardDrag : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         && StateMachine.Instance.Current.GetType() == typeof(PlayCardsState)
         && StateMachine.Instance.CurrentUnit.GetType() == typeof(PlayerUnit))
         {
-            CardsController.Instance.Play(_card);
-            CardsController.Instance.AfterPlay(_card);
+            StateMachine.Instance.CardsPlaying.Enqueue(_card);
         } else {
             _card.Move(_savedPosition, 0.2f, ()=>{});
         }
