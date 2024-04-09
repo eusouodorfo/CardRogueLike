@@ -72,22 +72,19 @@ public class CardsController : MonoBehaviour
     public void Play(Card card)
     {
         Transform scriptsHolder = card.transform.Find("Effects/Played");
-        //
-        List<object> targets = new List<object>();
-        targets.Add(CombatTester.instance.Defender);
-        //
         foreach (ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
         {
-            effect.Apply(targets);
+            effect.Apply();
         }
     }
 
     public void AfterPlay(Card card)
     {
         Transform scriptsHolder = card.transform.Find("Effects/AfterPlayed");
-        ICardEffect effect = scriptsHolder.GetComponentInChildren<ICardEffect>();
-        ITarget target = scriptsHolder.GetComponentInChildren<ITarget>();
-        effect.Apply(target.GetTargets());
+        foreach (ICardEffect effect in scriptsHolder.GetComponentsInChildren<ICardEffect>())
+        {
+            effect.Apply();
+        }
     }
     #endregion
 }
