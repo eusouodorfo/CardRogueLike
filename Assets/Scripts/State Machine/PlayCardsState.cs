@@ -60,14 +60,14 @@ public class PlayCardsState : State
             ITarget targeter = playTransform.GetChild(i).GetComponent<ITarget>();
             if(targeter == null)
             {
-                yield break;
+                continue;
             }
             List<object> targets = new List<object>();
             yield return StartCoroutine(targeter.GetTargets(targets));
             ICardEffect effect = playTransform.GetChild(i).GetComponent<ICardEffect>();
             if(effect == null)
             {
-                yield break;
+                continue;
             }
             yield return StartCoroutine(effect.Apply(targets));
         }

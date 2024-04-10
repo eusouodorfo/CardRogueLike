@@ -6,5 +6,5 @@ using UnityEngine;
 public class Stat 
 {
     public StatTypes Type;
-    public int value;
+    public int Value;
 }

@@ -11,7 +11,8 @@ public class DamageEffect : MonoBehaviour, ICardEffect
       foreach (object o in targets)
       {
          Unit unit = o as Unit;
-         //unit.takeDamage(Amount);
+         int currentHP = unit.GetStatValue(StatTypes.HP);
+         unit.SetStatValue(StatTypes.HP, Mathf.Max(currentHP - Amount, 0));
          Debug.LogFormat("Unit {0} took {1} Damage", unit, Amount);
          yield return null;
       }
