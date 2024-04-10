@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public delegate void OnUnitClicked(Unit unit);
+
 public class Unit : MonoBehaviour, IPointerClickHandler
 {
     public List<Stat> Stats;
+    public OnUnitClicked onUnitClicked = delegate{};
 
     public virtual IEnumerator Recover()
     {
@@ -27,6 +30,6 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("teste eventdata"+eventData);
+        onUnitClicked(this);
     }
 }
