@@ -46,19 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc13e43dc41314c438f6a6e587287cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats:
+  _stats:
   - Type: 0
-    value: 50
+    Value: 40
   - Type: 1
-    value: 50
+    Value: 40
   - Type: 2
-    value: 0
+    Value: 0
   - Type: 3
-    value: 0
+    Value: 0
   - Type: 4
-    value: 0
+    Value: 0
   MaxEnergy: 3
-  CurrentEnergy: 3
+  _currentEnergy: 0
   DrawAmount: 5
 --- !u!212 &5781355619737162087
 SpriteRenderer:

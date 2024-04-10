@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
 
     public virtual IEnumerator Recover()
     {
+        SetStatValue(StatTypes.Block, 0);
         yield return null;
     }
 

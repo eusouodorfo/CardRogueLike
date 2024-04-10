@@ -36,6 +36,7 @@ public class PlayerUnit : Unit
 
     public override IEnumerator Recover()
     {
+        yield return StartCoroutine(base.Recover());
         CurrentEnergy = MaxEnergy;
         yield return StartCoroutine(CardsController.Instance.DrawCard(DrawAmount));
     }
