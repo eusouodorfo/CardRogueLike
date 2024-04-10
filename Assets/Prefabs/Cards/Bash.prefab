@@ -109,30 +109,33 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -664389783, guid: b00fd018517bb0a4e84cd41fc57a1ff6, type: 3}
+    - target: {fileID: 4275458794445955622, guid: a33049f79d27b0f4e845e139062e1d9a, type: 3}
+      propertyPath: Value
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475699621563405004, guid: a33049f79d27b0f4e845e139062e1d9a, type: 3}
+      propertyPath: Energy
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a33049f79d27b0f4e845e139062e1d9a, type: 3}
---- !u!1 &3379190986083354541 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1072937720537505852, guid: a33049f79d27b0f4e845e139062e1d9a, type: 3}
-  m_PrefabInstance: {fileID: 2307702696824678289}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3666956013949625724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3379190986083354541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b07f0f1fc011ee4b8a9690545c6eb9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6138921548416399533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8446307583700737852, guid: a33049f79d27b0f4e845e139062e1d9a, type: 3}
   m_PrefabInstance: {fileID: 2307702696824678289}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5889133370346557748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138921548416399533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f417b38cbfa5664ab90f1fc004fd2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6133575626631193159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,15 +149,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 8
---- !u!114 &5889133370346557748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6138921548416399533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f417b38cbfa5664ab90f1fc004fd2e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -57,6 +57,22 @@ public class Card : MonoBehaviour
         _rotationTween = _rect.LeanRotateAroundLocal(Vector3.up, amount, duration).id;
     }
     
+    public bool CanPlay()
+    {
+        if(StateMachine.Instance.Current.GetType() != typeof(PlayCardsState)
+        && StateMachine.Instance.CurrentUnit.GetType() != typeof(PlayerUnit))
+        {
+            return false;
+        }
 
+        foreach(IPlayability playability in this.GetComponents<IPlayability>())
+        {
+            if(!playability.CanPlay())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     #endregion
 }
