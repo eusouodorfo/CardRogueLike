@@ -11,6 +11,8 @@ public class InflictEffect : CardEffect
       foreach (object o in targets)
       {
          Unit unit = o as Unit;
+         StatusEffect instantiated = Instantiate(StatusEffectPrefab, Vector3.zero, Quaternion.identity, unit.transform); 
+         instantiated.name = StatusEffectPrefab.name;
 
          yield return null;
       }

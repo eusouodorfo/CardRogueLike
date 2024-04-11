@@ -64,12 +64,10 @@ public class PlayCardsState : State
             }
             List<object> targets = new List<object>();
             yield return StartCoroutine(targeter.GetTargets(targets));
-            CardEffect effect = playTransform.GetChild(i).GetComponent<CardEffect>();
-            if(effect == null)
+            foreach(CardEffect effect in playTransform.GetChild(i).GetComponents<CardEffect>())
             {
-                continue;
-            }
-            yield return StartCoroutine(effect.Apply(targets));
+                yield return StartCoroutine(effect.Apply(targets));
+            }               
         }
     }
 
