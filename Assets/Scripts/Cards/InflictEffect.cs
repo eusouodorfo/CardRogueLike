@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InflictEffect : MonoBehaviour, ICardEffect
+public class InflictEffect : CardEffect
 {
    public StatusEffect StatusEffectPrefab;
 
-   public IEnumerator Apply(List<object> targets)
+   public override IEnumerator Apply(List<object> targets)
    {
       foreach (object o in targets)
       {

@@ -6,7 +6,5 @@ public enum StatTypes
 {
    MaxHP,
    HP,
-   Block,
-   Strenght,
-   Dextery
+   Block
 }

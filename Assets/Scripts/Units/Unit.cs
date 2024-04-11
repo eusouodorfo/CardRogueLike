@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     void GenerateStats()
     {
         _stats = new List<Stat>();
-        for (int i = 0; i < (int)StatTypes.Dextery + 1; i++)
+        for (int i = 0; i < (int)StatTypes.Block + 1; i++)
         {
             Stat stat = new Stat();
             stat.Type = (StatTypes)i;
