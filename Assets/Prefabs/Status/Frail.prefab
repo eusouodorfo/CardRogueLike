@@ -47,3 +47,4 @@ MonoBehaviour:
   Duration: 1
   Amount: -25
   Tag: 2
+  isPercentage: 1
