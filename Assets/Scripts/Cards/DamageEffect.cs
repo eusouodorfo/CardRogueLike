@@ -12,6 +12,14 @@ public class DamageEffect : MonoBehaviour, ICardEffect
       {
          Unit unit = o as Unit;
 
+         TagModifier modifier = unit.Modify[(int)ModifierTags.Damage];
+         if(modifier != null)
+         {
+            ModifiedValues modifiedValues = new ModifiedValues(Amount);
+            modifier(modifiedValues);
+            Debug.LogFormat("Base Value: {0}; Modified value : {1}", modifiedValues.BaseValue, modifiedValues.FinalValue);
+         }
+
          int block = unit.GetStatValue(StatTypes.Block);
          int leftoverBlock = Mathf.Max(0, block - Amount);
          unit.SetStatValue(StatTypes.Block, leftoverBlock);

@@ -14,6 +14,8 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     public OnUnit onUnitClicked = delegate{};
     public OnUnit onUnitTakeTurn = delegate{};
 
+    public TagModifier[] Modify = new TagModifier[(int)ModifierTags.Block+1];
+
     public virtual IEnumerator Recover()
     {
         SetStatValue(StatTypes.Block, 0);
