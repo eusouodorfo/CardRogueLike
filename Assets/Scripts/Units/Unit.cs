@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public delegate void OnUnitClicked(Unit unit);
+public delegate void OnUnit(Unit unit);
 
 public class Unit : MonoBehaviour, IPointerClickHandler
 {
@@ -11,11 +11,13 @@ public class Unit : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     List<Stat> _stats;
 
-    public OnUnitClicked onUnitClicked = delegate{};
+    public OnUnit onUnitClicked = delegate{};
+    public OnUnit onUnitTakeTurn = delegate{};
 
     public virtual IEnumerator Recover()
     {
         SetStatValue(StatTypes.Block, 0);
+        onUnitTakeTurn(this);
         yield return null;
     }
 

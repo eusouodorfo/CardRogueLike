@@ -12,9 +12,35 @@ public abstract class StatusEffect : MonoBehaviour
     void OnEnable()
     {
         _host = GetComponentInParent<Unit>();
+        if(Duration > 0)
+        {
+            _currentDuration = Duration;
+            _host.onUnitTakeTurn += DurationCountdown;
+        }
         OnInflicted();
     }
 
+    void OnDisable()
+    {
+        OnRemoved();
+    }
+
     protected abstract void OnInflicted();
+
+    protected abstract void OnRemoved();
+
+    protected virtual void OnDurationEnded()
+    {
+        _host.onUnitTakeTurn += DurationCountdown;
+        Destroy(this.gameObject);
+    }
     
+    void DurationCountdown(Unit unit)
+    {
+        _currentDuration--;
+        if(_currentDuration <= 0)
+        {
+            OnDurationEnded();
+        }
+    }
 }

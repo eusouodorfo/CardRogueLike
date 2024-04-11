@@ -11,4 +11,10 @@ public class StatChangeEffect : StatusEffect
         int currentvalue = _host.GetStatValue(Type);
         _host.SetStatValue(Type, currentvalue + Amount);
     }
+
+    protected override void OnRemoved()
+    {
+        int currentvalue = _host.GetStatValue(Type);
+        _host.SetStatValue(Type, currentvalue - Amount);
+    }
 }
