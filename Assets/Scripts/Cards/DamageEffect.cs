@@ -12,25 +12,30 @@ public class DamageEffect : MonoBehaviour, ICardEffect
       {
          Unit unit = o as Unit;
 
-         TagModifier modifier = unit.Modify[(int)ModifierTags.Damage];
-         if(modifier != null)
-         {
-            ModifiedValues modifiedValues = new ModifiedValues(Amount);
-            modifier(modifiedValues);
-            Debug.LogFormat("Base Value: {0}; Modified value : {1}", modifiedValues.BaseValue, modifiedValues.FinalValue);
-         }
+         ModifiedValues modifiedValues = new ModifiedValues(Amount);
+         ApplyModifier(modifiedValues, ModifierTags.DoAttackDamage, StateMachine.Instance.CurrentUnit);
+         ApplyModifier(modifiedValues, ModifierTags.TakeAttackDamage, unit);
 
          int block = unit.GetStatValue(StatTypes.Block);
-         int leftoverBlock = Mathf.Max(0, block - Amount);
+         int leftoverBlock = Mathf.Max(0, block - modifiedValues.FinalValue);
          unit.SetStatValue(StatTypes.Block, leftoverBlock);
 
          int currentHP = unit.GetStatValue(StatTypes.HP);
-         int leftoverDamage = Mathf.Max(0, Amount - block);
+         int leftoverDamage = Mathf.Max(0, modifiedValues.FinalValue - block);
          unit.SetStatValue(StatTypes.HP, Mathf.Max(currentHP - leftoverDamage, 0));
 
          Debug.LogFormat("Unit {0} block went from {1} to {2}; HP from {3} to {4}",
          unit, block, leftoverBlock, currentHP, unit.GetStatValue(StatTypes.HP));
          yield return null;
+      }
+   }
+
+   void ApplyModifier(ModifiedValues modifiedValues, ModifierTags tag, Unit unit)
+   {
+      TagModifier modify = unit.Modify[(int)tag];
+      if(modify != null)
+      {
+         modify(modifiedValues);
       }
    }
 }

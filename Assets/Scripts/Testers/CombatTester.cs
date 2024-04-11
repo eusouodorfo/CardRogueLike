@@ -21,14 +21,4 @@ public class CombatTester : MonoBehaviour
         Defender = temp;
     }
 
-    [ContextMenu("Add dmg modifier")]
-    void AddDmgModifier()
-    {
-        Defender.Modify[(int)ModifierTags.Damage] += DmgModifier;
-    }
-
-    void DmgModifier(ModifiedValues modifiedValues)
-    {
-        modifiedValues.FinalValue += 10;;
-    }
 }

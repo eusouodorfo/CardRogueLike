@@ -6,8 +6,8 @@ public abstract class StatusEffect : MonoBehaviour
 {
     public int Duration;
     public int Amount;
-    public Unit _host;
-    public int _currentDuration;
+    protected Unit _host;
+    int _currentDuration;
 
     void OnEnable()
     {

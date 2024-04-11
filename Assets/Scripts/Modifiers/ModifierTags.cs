@@ -6,6 +6,7 @@ public delegate void TagModifier(ModifiedValues modifiedValues);
 
 public enum ModifierTags 
 {
-    Damage,
-    Block
+    DoAttackDamage,
+    TakeAttackDamage,
+    GainBlock //sempre manter por ultimo para nao quebrar o script 
 }
