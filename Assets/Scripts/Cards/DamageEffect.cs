@@ -27,6 +27,11 @@ public class DamageEffect : CardEffect
          Debug.LogFormat("Unit {0} block went from {1} to {2}; HP from {3} to {4}",
          unit, block, leftoverBlock, currentHP, unit.GetStatValue(StatTypes.HP));
          yield return null;
+
+         if(unit.GetStatValue(StatTypes.HP) <= 0)
+         {
+            unit.Modify[(int)ModifierTags.WhenUnitDies](null);
+         }
       }
    }
 
